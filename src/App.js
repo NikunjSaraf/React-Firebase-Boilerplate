@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import React, { Fragment } from "react";
+import "./App.css";
+import { Route, Switch, BrowserRouter as Router } from "react-router-dom";
+import Home from "./components/pages/Home";
+import Login from "./components/auth/Login";
+import Signup from "./components/auth/Signup";
+import Dashboard from "./components/pages/Dashboard";
+import PasswordRecovery from "./components/pages/PasswordRecovery";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Fragment>
+        <Switch>
+          <Route exact={true} path="/" component={Home}></Route>
+          <Route exact={true} path="/auth/login" component={Login}></Route>
+          <Route exact={true} path="/auth/signup" component={Signup}></Route>
+          <Route exact={true} path="/dashboard" component={Dashboard}></Route>
+          <Route
+            exact={true}
+            path="/recoverpassword"
+            component={PasswordRecovery}
+          ></Route>
+        </Switch>
+      </Fragment>
+    </Router>
   );
 }
 
