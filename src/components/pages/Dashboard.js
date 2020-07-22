@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import firebase from "../../config/fire";
 import { Helmet } from "react-helmet";
-const Dashboard = (props, { user }) => {
+const Dashboard = (props, { name }) => {
   return (
     <Fragment>
       <Helmet>
@@ -20,6 +20,7 @@ const Dashboard = (props, { user }) => {
                   Log out
                 </Link>
               </li>
+              <li>{name}</li>
             </ul>
           </div>
         </div>

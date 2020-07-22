@@ -132,23 +132,15 @@ const Signup = (props) => {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => {
-        let result = firebase.auth().currentUser.updateProfile({
-          displayName: name,
-        });
-        console.log(result);
-
-        const user = firebase.auth().currentUser;
-        window.alert(
-          "Registration successfull Please Check Email for verification"
-        );
+      .then((authUser) => {
+        let user = firebase.auth().currentUser;
         user.sendEmailVerification();
-        if (!user.emailVerified) {
-          alert("Please Verify Email First");
+        if (authUser.user.emailVerified) {
+          console.log("Email Verified");
+        } else {
+          console.log("Email not verified");
         }
-        if (props.history.location.pathname === "/auth/signup") {
-          props.history.replace("/dashboard");
-        }
+        props.history.replace("/auth/login");
       })
       .catch((err) => {
         alert(err);
@@ -160,7 +152,6 @@ const Signup = (props) => {
       .auth()
       .signInWithPopup(new firebase.auth.GoogleAuthProvider())
       .then(() => {
-        alert("Successfull");
         props.history.replace("/dashboard");
       });
   }

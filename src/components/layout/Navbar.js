@@ -5,7 +5,7 @@ const Navbar = () => {
   return (
     <Fragment>
       <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
-        <div class="container-fluid">
+        <div className="container-fluid">
           <Link className="navbar-brand" to="/">
             BoilerPlate
           </Link>
